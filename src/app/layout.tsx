@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "OpinionOnAP - WeDoDare Feed",
   description: "Insightful analyses and opinions of AP News articles powered by WeDoDare.",
+  alternates: {
+    canonical: "https://www.wedodare.com/feed/OpinionOnAP",
+  },
 };
 
 export default function RootLayout({

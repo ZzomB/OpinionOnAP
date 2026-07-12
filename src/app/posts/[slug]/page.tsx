@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Tag, ExternalLink, FileText, BookOpen, BarChart2 } from 'lucide-react';
@@ -94,6 +95,20 @@ const markdownComponents = {
     );
   }
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+  if (!article) return {};
+  
+  return {
+    title: `${article.title} - OpinionOnAP`,
+    description: article.title,
+    alternates: {
+      canonical: `https://www.wedodare.com/feed/OpinionOnAP/posts/${slug}`,
+    },
+  };
+}
 
 // Statically generate routes at build time
 export async function generateStaticParams() {

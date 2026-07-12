@@ -1,0 +1,47 @@
+# Task List - OpinionOnAP Layout Refinements
+
+- [x] Bootstrapping & Setup
+  - [x] Temporarily move spec files to `_specs/` to allow clean initialization
+  - [x] Run `create-next-app` to initialize the project
+  - [x] Restore spec files from `_specs/`
+  - [x] Install dev and production dependencies
+  - [x] Configure `next.config.ts` with `basePath: "/feed/OpinionOnAP"`
+  - [x] Rename routing folder `src/app/posts/%5Bslug%5D` to `src/app/posts/[slug]`
+- [x] Styling & Design System
+  - [x] Copy CSS variables from `wedodare_system_spec.md` to `src/app/globals.css`
+  - [x] Setup Tailwind CSS v4 `@theme inline` configurations in `src/app/globals.css`
+- [x] Navigation & Layout Components
+  - [x] Implement `ThemeToggle` / `ThemeProvider`
+  - [x] Fix Logo rendering and dropdown width in `GlobalHeader.tsx`
+  - [x] Update `src/app/layout.tsx` to include `GlobalHeader` and correct styling classes
+  - [x] Copy original `logo-light.png` from root project to local `public/` folder
+  - [x] Align `GlobalHeader.tsx` menu categories and branding text with `www.wedodare.com`
+- [x] Daily Fresh Content Reset Logic
+  - [x] Implement cleanup logic for old `.md` files in `07 News transmitter/pipeline.py`
+- [x] UI Refinements & Card Grouping (Home Page)
+  - [x] Refine copywriting description text in `ArticleList.tsx`
+  - [x] Rename board headers to "Business" and "World"
+  - [x] Add Today's Date divider bar (Option B selected) above columns
+  - [x] Group each column's list of articles into a single outer card container
+  - [x] Remove individual item dates and calendar icons
+  - [x] Render articles inside columns as list items separated by simple borders with edge-to-edge hover effect
+  - [x] Translate description to English: "Daily feed providing original perspectives and analytical commentary on topics reported by AP News." (Copyright-safe)
+  - [x] Reduce spacing between title and columns
+  - [x] Center align Business/World titles and remove dot/article counts
+  - [x] Increase borders/dividers contrast (Option A: border-border/90, dividers border-border/75)
+- [x] Detail Page & Footer Refinements
+  - [x] Copy and re-implement `TableOfContents.tsx` in `src/components/`
+  - [x] Modify `GlobalFooter.tsx` to remove links and center copyright texts
+  - [x] Update `07 News transmitter/pipeline.py` disclaimer text template to English
+  - [x] Update `src/app/posts/[slug]/page.tsx` base markup
+  - [x] Set comfortable font scale (`prose-base md:prose-lg`) and line height (`leading-[1.75] md:leading-[1.85]`)
+  - [x] Update boundary divider regex in `src/lib/github.ts` to strip trailing markdown `---` lines
+  - [x] Remove `border-b pb-3` from headings and increase size to `text-xl md:text-2xl font-extrabold` in `page.tsx`
+  - [x] Add explicit `<hr className="border-t border-border/60 my-6" />` between sections
+  - [x] Strip list bullet `* ` markers from footer in `page.tsx` and transmitter `pipeline.py` template
+- [x] Subdomain Rewrite & Canonical Configurations
+  - [x] Add `/feed/OpinionOnAP` rewrite rule in `01 root_WeDoDare/next.config.ts` (Pointed to vercel deployed target)
+  - [x] Add canonical metadata alternates in `01 OpinionForAP/src/app/layout.tsx` (Pointed to www.wedodare.com/feed/OpinionOnAP)
+  - [x] Implement `generateMetadata` with dynamic canonical link in `01 OpinionForAP/src/app/posts/[slug]/page.tsx` (Pointed to www.wedodare.com/feed/OpinionOnAP/posts/[slug])
+- [x] Verification
+  - [x] Verify static builds `npm run build` (Verified both subproject and root project builds succeed with no warnings)
