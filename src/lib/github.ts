@@ -217,3 +217,64 @@ function parseArticle(slug: string, filename: string, rawContent: string): Artic
     return null;
   }
 }
+
+// Fetch the latest articles from index.json (Zero API overhead caching strategy)
+export async function getLatestArticles(): Promise<Article[]> {
+  if (isLocalEnv()) {
+    console.log('Reading latest articles from local index.json...');
+    try {
+      const indexPath = path.join(LOCAL_POSTS_PATH, 'index.json');
+      if (fs.existsSync(indexPath)) {
+        const rawContent = fs.readFileSync(indexPath, 'utf-8');
+        const indexData = JSON.parse(rawContent);
+        return indexData.map((item: any) => ({
+          slug: item.slug,
+          filename: `${item.slug}.md`,
+          title: item.title,
+          date: item.date,
+          category: item.category,
+          originalLink: item.originalLink || '',
+          summaryMd: item.summaryMd || '',
+          mainMd: '',
+          analysisMd: '',
+          footerMd: ''
+        }));
+      }
+    } catch (error) {
+      console.error('Error reading local index.json:', error);
+    }
+  }
+
+  console.log('Fetching latest articles from GitHub index.json...');
+  try {
+    const headers: Record<string, string> = {
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'OpinionOnAP-NextJS',
+    };
+    if (process.env.GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+    }
+
+    const indexUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${POSTS_DIR}/index.json`;
+    const response = await fetch(indexUrl, { headers, next: { revalidate: 3600 } });
+    if (response.ok) {
+      const indexData = await response.json();
+      return indexData.map((item: any) => ({
+        slug: item.slug,
+        filename: `${item.slug}.md`,
+        title: item.title,
+        date: item.date,
+        category: item.category,
+        originalLink: item.originalLink || '',
+        summaryMd: item.summaryMd || '',
+        mainMd: '',
+        analysisMd: '',
+        footerMd: ''
+      }));
+    }
+  } catch (error) {
+    console.error('Error fetching latest articles from GitHub:', error);
+  }
+
+  return [];
+}

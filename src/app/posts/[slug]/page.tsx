@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Tag, ExternalLink, FileText, BookOpen, BarChart2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import { getArticles, getArticleBySlug } from '@/lib/github';
+import { getLatestArticles, getArticleBySlug } from '@/lib/github';
 import TableOfContents from '@/components/TableOfContents';
 
 interface PageProps {
@@ -112,7 +112,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // Statically generate routes at build time
 export async function generateStaticParams() {
-  const articles = await getArticles();
+  const articles = await getLatestArticles();
   return articles.map((article) => ({
     slug: article.slug,
   }));

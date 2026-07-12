@@ -43,5 +43,10 @@
   - [x] Add `/feed/OpinionOnAP` rewrite rule in `01 root_WeDoDare/next.config.ts` (Pointed to vercel deployed target)
   - [x] Add canonical metadata alternates in `01 OpinionForAP/src/app/layout.tsx` (Pointed to www.wedodare.com/feed/OpinionOnAP)
   - [x] Implement `generateMetadata` with dynamic canonical link in `01 OpinionForAP/src/app/posts/[slug]/page.tsx` (Pointed to www.wedodare.com/feed/OpinionOnAP/posts/[slug])
+- [x] O(1) Scalable Index & Yesterday's Briefing
+  - [x] Disable folder wipe and implement O(1) incremental `index.json` updates in `pipeline.py`
+  - [x] Create `getLatestArticles()` in `github.ts` to fetch from `index.json`
+  - [x] Redesign `ArticleList.tsx` to stack Today's Briefing and Yesterday's Briefing grids
+  - [x] Create dynamic `sitemap.ts` in subproject for O(1) compliant full search engine indexation of old posts
 - [x] Verification
   - [x] Verify static builds `npm run build` (Verified both subproject and root project builds succeed with no warnings)
