@@ -31,13 +31,19 @@ function isLocalEnv(): boolean {
   }
 }
 
-// Extract sections from markdown body
+// Extract sections from markdown body (Supports both Korean and English headers)
 function extractSections(markdown: string) {
   const content = markdown.replace(/\r\n/g, '\n');
 
-  const summaryIndex = content.indexOf('## 📌 핵심 요약');
-  const mainContentIndex = content.indexOf('## 📖 주요 내용');
-  const analysisIndex = content.indexOf('## 💡 시사점 및 분석');
+  let summaryIndex = content.indexOf('## 📌 Key Summary');
+  if (summaryIndex === -1) summaryIndex = content.indexOf('## 📌 핵심 요약');
+
+  let mainContentIndex = content.indexOf('## 📖 Main Content');
+  if (mainContentIndex === -1) mainContentIndex = content.indexOf('## 📖 주요 내용');
+
+  let analysisIndex = content.indexOf('## 💡 Key Takeaways & Analysis');
+  if (analysisIndex === -1) analysisIndex = content.indexOf('## 💡 시사점 및 분석');
+
   const footerIndex = content.lastIndexOf('---');
 
   let summaryMd = '';
@@ -48,19 +54,22 @@ function extractSections(markdown: string) {
   // Extract Summary
   if (summaryIndex !== -1) {
     const end = mainContentIndex !== -1 ? mainContentIndex : (analysisIndex !== -1 ? analysisIndex : (footerIndex !== -1 ? footerIndex : content.length));
-    summaryMd = content.slice(summaryIndex + '## 📌 핵심 요약'.length, end).trim();
+    const headerLength = content.includes('## 📌 Key Summary') ? '## 📌 Key Summary'.length : '## 📌 핵심 요약'.length;
+    summaryMd = content.slice(summaryIndex + headerLength, end).trim();
   }
 
   // Extract Main Content
   if (mainContentIndex !== -1) {
     const end = analysisIndex !== -1 ? analysisIndex : (footerIndex !== -1 ? footerIndex : content.length);
-    mainMd = content.slice(mainContentIndex + '## 📖 주요 내용'.length, end).trim();
+    const headerLength = content.includes('## 📖 Main Content') ? '## 📖 Main Content'.length : '## 📖 주요 내용'.length;
+    mainMd = content.slice(mainContentIndex + headerLength, end).trim();
   }
 
   // Extract Analysis
   if (analysisIndex !== -1) {
     const end = footerIndex !== -1 ? footerIndex : content.length;
-    analysisMd = content.slice(analysisIndex + '## 💡 시사점 및 분석'.length, end).trim();
+    const headerLength = content.includes('## 💡 Key Takeaways & Analysis') ? '## 💡 Key Takeaways & Analysis'.length : '## 💡 시사점 및 분석'.length;
+    analysisMd = content.slice(analysisIndex + headerLength, end).trim();
   }
 
   // Extract Footer

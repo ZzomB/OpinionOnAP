@@ -142,7 +142,7 @@ export function ArticleList({ articles }: ArticleListProps) {
               </div>
               {todayBusiness.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-sm text-muted-foreground">오늘의 비즈니스 뉴스가 아직 등록되지 않았습니다.</p>
+                  <p className="text-sm text-muted-foreground">Today's Business news has not been posted yet.</p>
                 </div>
               ) : (
                 <div className="flex flex-col">
@@ -163,11 +163,6 @@ export function ArticleList({ articles }: ArticleListProps) {
                           }`}>
                             {article.title}
                           </h3>
-                          {isRead && (
-                            <span className="flex items-center text-primary shrink-0 ml-2">
-                              <CheckCircle2 className="w-4 h-4" />
-                            </span>
-                          )}
                         </div>
                         <p className="text-sm text-muted-foreground/90 leading-relaxed line-clamp-2">
                           {getExcerpt(article.summaryMd)}
@@ -188,7 +183,7 @@ export function ArticleList({ articles }: ArticleListProps) {
               </div>
               {todayWorld.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-sm text-muted-foreground">오늘의 세계 뉴스가 아직 등록되지 않았습니다.</p>
+                  <p className="text-sm text-muted-foreground">Today's World news has not been posted yet.</p>
                 </div>
               ) : (
                 <div className="flex flex-col">
@@ -209,11 +204,6 @@ export function ArticleList({ articles }: ArticleListProps) {
                           }`}>
                             {article.title}
                           </h3>
-                          {isRead && (
-                            <span className="flex items-center text-primary shrink-0 ml-2">
-                              <CheckCircle2 className="w-4 h-4" />
-                            </span>
-                          )}
                         </div>
                         <p className="text-sm text-muted-foreground/90 leading-relaxed line-clamp-2">
                           {getExcerpt(article.summaryMd)}
@@ -253,7 +243,7 @@ export function ArticleList({ articles }: ArticleListProps) {
               </div>
               {yesterdayBusiness.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-sm text-muted-foreground">어제의 비즈니스 뉴스가 없습니다.</p>
+                  <p className="text-sm text-muted-foreground">Yesterday's Business news is not available.</p>
                 </div>
               ) : (
                 <div className="flex flex-col">
@@ -274,11 +264,6 @@ export function ArticleList({ articles }: ArticleListProps) {
                           }`}>
                             {article.title}
                           </h3>
-                          {isRead && (
-                            <span className="flex items-center text-primary shrink-0 ml-2">
-                              <CheckCircle2 className="w-4 h-4" />
-                            </span>
-                          )}
                         </div>
                         <p className="text-sm text-muted-foreground/90 leading-relaxed line-clamp-2">
                           {getExcerpt(article.summaryMd)}
@@ -299,7 +284,7 @@ export function ArticleList({ articles }: ArticleListProps) {
               </div>
               {yesterdayWorld.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-sm text-muted-foreground">어제의 세계 뉴스가 없습니다.</p>
+                  <p className="text-sm text-muted-foreground">Yesterday's World news is not available.</p>
                 </div>
               ) : (
                 <div className="flex flex-col">
@@ -320,11 +305,6 @@ export function ArticleList({ articles }: ArticleListProps) {
                           }`}>
                             {article.title}
                           </h3>
-                          {isRead && (
-                            <span className="flex items-center text-primary shrink-0 ml-2">
-                              <CheckCircle2 className="w-4 h-4" />
-                            </span>
-                          )}
                         </div>
                         <p className="text-sm text-muted-foreground/90 leading-relaxed line-clamp-2">
                           {getExcerpt(article.summaryMd)}
