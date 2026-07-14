@@ -40,22 +40,30 @@ export function GlobalHeader() {
       <div className="mx-auto max-w-7xl h-full px-4 flex items-center justify-between">
         
         {/* 로고 영역 */}
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 font-bold text-lg text-foreground hover:opacity-90 z-50"
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          <img 
-            src="/feed/OpinionOnAP/logo-light.png?v=2" 
-            alt="WeDoDare Logo" 
-            width={24} 
-            height={24} 
-            className="rounded-md object-contain transition-all duration-300 filter dark:invert"
-          />
-          <span className="tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-            WeDoDare Feed
-          </span>
-        </Link>
+        <div className="flex items-center gap-2 z-50">
+          <a 
+            href="/" 
+            className="flex items-center hover:opacity-90 cursor-pointer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <img 
+              src="/feed/OpinionOnAP/logo-light.png?v=2" 
+              alt="WeDoDare Logo" 
+              width={24} 
+              height={24} 
+              className="rounded-md object-contain transition-all duration-300 filter dark:invert"
+            />
+          </a>
+          <Link 
+            href="/" 
+            className="flex items-center font-bold text-lg text-foreground hover:opacity-90"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className="tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
+              WeDoDare Feed
+            </span>
+          </Link>
+        </div>
 
         {/* 데스크톱 내비게이션 메뉴 */}
         <nav className="hidden md:flex items-center gap-6 h-full">
