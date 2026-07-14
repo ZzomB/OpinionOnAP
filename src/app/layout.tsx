@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "OpinionOnAP - WeDoDare Feed",
   description: "Insightful analyses and opinions of AP News articles powered by WeDoDare.",
   alternates: {
-    canonical: "https://www.wedodare.com/feed/OpinionOnAP",
+    canonical: "https://opinion.wedodare.com",
   },
 };
 

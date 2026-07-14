@@ -112,7 +112,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${article.title} - OpinionOnAP`,
     description: article.title,
     alternates: {
-      canonical: `https://www.wedodare.com/feed/OpinionOnAP/posts/${slug}`,
+      canonical: `https://opinion.wedodare.com/posts/${slug}`,
     },
   };
 }

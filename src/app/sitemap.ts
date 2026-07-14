@@ -6,7 +6,7 @@ export const revalidate = 86400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getArticles();
-  const baseUrl = 'https://www.wedodare.com/feed/OpinionOnAP';
+  const baseUrl = 'https://opinion.wedodare.com';
 
   const articleEntries = articles.map((article) => ({
     url: `${baseUrl}/posts/${article.slug}`,
